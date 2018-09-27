@@ -1,0 +1,8 @@
+# Intelij stuff
+.idea/
+.gradle/
+out/
+*.iml
+
+
+
