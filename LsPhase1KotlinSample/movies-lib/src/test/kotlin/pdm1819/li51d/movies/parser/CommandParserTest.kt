@@ -8,12 +8,7 @@ import pdm1819.li51d.movies.command.CreateMovie
 import pdm1819.li51d.movies.command.GetTheatreList
 import kotlin.reflect.KClass
 
-class CommandParserTest {
-
-    @Before
-    fun setUp() {
-        registerCommands()
-    }
+class CommandParserTest : BaseCommandTests() {
 
     @Test
     fun shouldReturnCreateMovieCommand() {
@@ -31,7 +26,8 @@ class CommandParserTest {
     }
 
     private fun shouldReturnCommandForString(cmdStr: String, klass: KClass<*>) {
-        val command = CommandParser.getCommand(cmdStr)
+        //val command = CommandParser.getCommand(cmdStr)
+        val command = CommandParser[cmdStr]
         assertTrue(command::class == klass)
     }
 

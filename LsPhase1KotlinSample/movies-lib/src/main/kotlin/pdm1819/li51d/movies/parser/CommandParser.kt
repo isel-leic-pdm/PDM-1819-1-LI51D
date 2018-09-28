@@ -10,6 +10,8 @@ object CommandParser {
         commands[cmdStr] = cmdFactory
     }
 
+    operator fun get(cmdStr: String):  Command = getCommand(cmdStr)
+
 
     fun getCommand(cmdString: String) : Command =
         commands[commands.keys.first { cmdString.isCommandOf(it) }]!!.invoke()
@@ -29,4 +31,22 @@ object CommandParser {
 
         return true;
     }
+
+    fun parseArguments(arguments: String): Map<String, String> {
+        val argsMap: MutableMap<String, String> = mutableMapOf();
+
+
+        arguments.
+                split("&").asSequence().
+                map { it.split("=") }.
+                forEach { argsMap.put(it[0], it[1].handleSpaces())}
+
+        return argsMap
+
+
+    }
+
+    fun String.handleSpaces() : String =
+            this.replace("+", " ")
+
 }
