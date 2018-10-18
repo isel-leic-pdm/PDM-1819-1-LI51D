@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">UserTasks</string>
-    <string name="title_activity_another">AnotherActivity</string>
+    <string name="title_activity_a1">ActivityA1</string>
+    <string name="title_activity_b1">ActivityB1</string>
 </resources>

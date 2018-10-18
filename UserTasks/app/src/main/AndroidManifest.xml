@@ -9,18 +9,38 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".ActivityA"
+            android:label="UT-A"
+            android:launchMode="singleTask"
+            android:clearTaskOnLaunch="true"
+            android:documentLaunchMode="intoExisting">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
+        <activity
+            android:name=".ActivityB"
+            android:label="UT-B"
+            android:launchMode="singleTask"
+            android:clearTaskOnLaunch="true"
+            android:documentLaunchMode="intoExisting">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".AnotherActivity"
-            android:label="@string/title_activity_another"
+            android:name=".ActivityA1"
+            android:label="@string/title_activity_a1"
             android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".Activity2"></activity>
+
+        <activity
+            android:name=".ActivityB1"
+            android:label="@string/title_activity_b1"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
