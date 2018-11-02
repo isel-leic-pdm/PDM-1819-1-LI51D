@@ -1,6 +1,7 @@
 package li51d.i1819.pdm.isel.pt.usingvolley.data
 
 import android.content.Context
+import android.util.Log
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.Response
@@ -14,6 +15,7 @@ object HttpRequests {
 
     public fun init(context: Context) {
         // Instantiate the RequestQueue.
+        Log.i(TAG, "Init called")
         queue = Volley.newRequestQueue(context)
     }
 
