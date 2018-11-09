@@ -2,33 +2,33 @@ package li51d.i1819.pdm.isel.pt.recyclerview
 
 import android.support.v7.widget.RecyclerView
 import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 
 class StringAdapter(private val data: Array<String>)
-    : RecyclerView.Adapter<StringAdapter.TextViewHolder>() {
+    : RecyclerView.Adapter<StringAdapter.ItemViewHolder>() {
 
     private val TAG = StringAdapter::class.java.simpleName
 
     private var countViewHolderIntances = 0
     private var countBindViewHolder = 0
 
-    class TextViewHolder(val textView: TextView)
-        : RecyclerView.ViewHolder(textView)
+    class ItemViewHolder(itemView: View)
+        : RecyclerView.ViewHolder(itemView)
 
     /**
      * Create new views (invoked by the layout manager)
      */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int)
-            : TextViewHolder {
+            : ItemViewHolder {
         // create a new view
-        val textView = TextView(parent.context);
-        textView.textSize = 30.0F
-//            LayoutInflater.from(parent.context)
-//            .inflate(R.layout.my_text_view, parent, false) as TextView
-//      set the view's size, margins, paddings and layout parameters
+        val view = LayoutInflater.from(parent.context)
+            .inflate(R.layout.recycler_view_item, parent, false)
 
-        val textViewHolder = TextViewHolder(textView)
+
+        val textViewHolder = ItemViewHolder(view)
         Log.i(TAG,"ViewHolder created: ${++countViewHolderIntances} with hashcode ${textViewHolder.hashCode()} for type $viewType")
         return textViewHolder
     }
@@ -37,12 +37,19 @@ class StringAdapter(private val data: Array<String>)
     /**
      * Replace the contents of a view (invoked by the layout manager)
      */
-    override fun onBindViewHolder(holder: TextViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
 
         Log.i(TAG,"onBindViewHolder called for position $position: ${++countBindViewHolder} with viewHolder ${holder.hashCode()}")
-        holder.textView.text = data[position]
+        val str = data[position]
+
+        var cityNameSize = holder.itemView.findViewById<TextView>(R.id.cityNameSize)
+        var cityName = holder.itemView.findViewById<TextView>(R.id.cityName)
+
+        cityNameSize.text = str.length.toString()
+        cityName.text = str
+
     }
 
     /**
