@@ -1,6 +1,7 @@
 package li51d.i1819.pdm.isel.pt.usingvolley.data
 
 import android.content.Context
+import android.support.annotation.Nullable
 import android.util.Log
 import com.android.volley.Request
 import com.android.volley.RequestQueue
@@ -19,10 +20,15 @@ object HttpRequests {
         queue = Volley.newRequestQueue(context)
     }
 
-    private fun request(method: Int, url: String, cb: (String) -> Unit) {
+    private fun request(
+        method: Int,
+        url: String,
+        headers: Map<String, String>,
+        cb: (String) -> Unit
+    ) {
 
-        val req = StringRequest(
-            Request.Method.GET, url,
+        val req = HeadersStringRequest(
+            Request.Method.GET, url, headers,
             onResponse(cb),
             onError()
         )
@@ -30,21 +36,24 @@ object HttpRequests {
     }
 
 
-    fun get(url: String, cb: (String) -> Unit) {
-        request(Request.Method.GET, url, cb)
-    }
-
-    fun delete(url: String, cb: (String) -> Unit) {
-        val req: StringRequest = StringRequest(
-            Request.Method.GET, url,
-            onResponse(cb),
-            onError()
-        )
-        HttpRequests.queue.add(req)
+    fun get(url: String, headers: Map<String, String> = mapOf() ,cb: (String) -> Unit) {
+        request(Request.Method.GET, url, headers, cb)
     }
 
     private fun onResponse(cb: (String) -> Unit): Response.Listener<String> = Response.Listener { str -> cb(str) }
 
     private fun onError(): Response.ErrorListener = Response.ErrorListener { err -> throw Exception(err.message) }
+
+
+    class HeadersStringRequest(method: Int,
+                               url: String,
+                               val hdrs: Map<String, String>,
+                               listener: Response.Listener<String>,
+                               errorListener: Response.ErrorListener
+    ) : StringRequest(method,url, listener, errorListener ) {
+
+        override fun getHeaders(): MutableMap<String, String>  = hdrs.toMutableMap()
+
+    }
 
 }
