@@ -1,5 +1,6 @@
 package li51d.i1819.pdm.isel.pt.recyclerview
 
+import android.graphics.Color
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
@@ -16,7 +17,11 @@ class StringAdapter(private val data: Array<String>)
     private var countBindViewHolder = 0
 
     class ItemViewHolder(itemView: View)
-        : RecyclerView.ViewHolder(itemView)
+        : RecyclerView.ViewHolder(itemView) {
+        val cityNameSize = itemView.findViewById<TextView>(R.id.cityNameSize)
+        val cityName = itemView.findViewById<TextView>(R.id.cityName)
+
+    }
 
     /**
      * Create new views (invoked by the layout manager)
@@ -44,12 +49,12 @@ class StringAdapter(private val data: Array<String>)
         Log.i(TAG,"onBindViewHolder called for position $position: ${++countBindViewHolder} with viewHolder ${holder.hashCode()}")
         val str = data[position]
 
-        var cityNameSize = holder.itemView.findViewById<TextView>(R.id.cityNameSize)
-        var cityName = holder.itemView.findViewById<TextView>(R.id.cityName)
 
-        cityNameSize.text = str.length.toString()
-        cityName.text = str
-
+        if(str.startsWith("B")) {
+                holder.cityName.setTextColor(Color.RED)
+        }
+        holder.cityNameSize.text = str.length.toString()
+        holder.cityName.text = str
     }
 
     /**
