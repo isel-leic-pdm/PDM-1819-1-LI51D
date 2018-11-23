@@ -30,7 +30,7 @@ class StringAdapter(private val data: Array<String>)
             : ItemViewHolder {
         // create a new view
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.recycler_view_item, parent, false)
+            .inflate(R.layout.competition_view_item, parent, false)
 
 
         val textViewHolder = ItemViewHolder(view)
