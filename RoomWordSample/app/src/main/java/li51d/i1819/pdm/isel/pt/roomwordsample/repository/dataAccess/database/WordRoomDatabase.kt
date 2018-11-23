@@ -1,10 +1,8 @@
 package li51d.i1819.pdm.isel.pt.roomwordsample.repository.dataAccess.database
 
+import android.os.AsyncTask
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import androidx.sqlite.db.SupportSQLiteDatabase
-import androidx.annotation.NonNull
-import android.os.AsyncTask
 
 
 @Database(entities = [Word::class], version = 1)
