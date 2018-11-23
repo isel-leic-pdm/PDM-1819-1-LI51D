@@ -45,6 +45,7 @@ class WordListAdapter constructor(owner: LifecycleOwner, val words: LiveData<Lis
     // getItemCount() is called many times, and when it is first called,
     // words has not been updated (means initially, it's null, and we can't return null).
     override fun getItemCount(): Int {
-        return words.value?.size ?: 0
+        val count = words.value?.size ?: 0
+        return count
     }
 }

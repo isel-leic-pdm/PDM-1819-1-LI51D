@@ -6,6 +6,10 @@ import li51d.i1819.pdm.isel.pt.roomwordsample.repository.WordRepository
 import li51d.i1819.pdm.isel.pt.roomwordsample.repository.dataAccess.database.Word
 
 
-class WordListViewModel(repository: WordRepository) : ViewModel() {
+class WordListViewModel(private val repository: WordRepository) : ViewModel() {
     val allWords: LiveData<List<Word>> = repository.allWords
+
+    fun insert(word: Word) {
+        repository.insert(word)
+    }
 }
