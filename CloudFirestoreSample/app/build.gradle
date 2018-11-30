@@ -1,0 +1,43 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'com.google.gms.google-services'
+
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "li51d.i1819.pdm.isel.pt.cloudfirestoresample"
+        minSdkVersion 26
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner  "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    def archLifecycleVersion = "2.0.0"
+    def workVersion = "1.0.0-alpha11"
+
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "android.arch.work:work-runtime-ktx:$workVersion"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+    implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation "androidx.constraintlayout:constraintlayout:$archLifecycleVersion-alpha2"
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test:runner:1.1.1-alpha01'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1-alpha01'
+
+
+
+    implementation 'com.google.firebase:firebase-core:16.0.5'
+    implementation 'com.google.firebase:firebase-firestore:17.1.3'
+}
